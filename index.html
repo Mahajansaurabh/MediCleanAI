@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MediClean AI</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- Navbar -->
+  <header class="bg-white shadow-md">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <h1 class="text-2xl font-bold text-blue-600">MediClean AI</h1>
+      <nav class="space-x-6 hidden md:flex">
+        <a href="#chatbot" class="hover:text-blue-600">Chat</a>
+        <a href="#about" class="hover:text-blue-600">About</a>
+        <a href="#features" class="hover:text-blue-600">Features</a>
+        <a href="#contact" class="hover:text-blue-600">Contact</a>
+      </nav>
+      <a href="#chatbot" class="px-4 py-2 bg-blue-600 text-white rounded-lg">Try Chatbot</a>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="bg-blue-50 py-16 text-center">
+    <h2 class="text-4xl font-bold text-gray-900">Your AI Assistant for Hospital Hygiene</h2>
+    <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+      Ask questions about cleaning schedules, safety protocols, and hygiene reports — all powered by AI.
+    </p>
+    <div class="mt-6">
+      <a href="#chatbot" class="px-6 py-3 bg-blue-600 text-white rounded-lg text-lg">Start Chatting</a>
+    </div>
+  </section>
+
+  <!-- Chatbot Section -->
+  <section id="chatbot" class="py-16">
+    <div class="max-w-3xl mx-auto bg-white rounded-xl shadow-lg border border-gray-200">
+      
+      <!-- Header -->
+      <div class="flex items-center gap-2 px-6 py-4 border-b bg-gray-50 rounded-t-xl">
+        <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+        <h3 class="text-lg font-semibold">MediClean AI Chat</h3>
+      </div>
+
+      <!-- Chat Window -->
+      <div class="h-96 overflow-y-auto p-6 space-y-4" id="chat-window">
+        <!-- Bot message -->
+        <div class="flex items-start gap-3">
+          <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center text-green-600">🤖</div>
+          <div class="bg-green-50 p-3 rounded-lg max-w-[75%]">
+            <p>Hello! I am MediClean AI, your assistant for hospital hygiene and safety.<br>
+            You can ask me questions like <em>'When was Ward 5B last cleaned?'</em> or 
+            <em>'What is the cleaning schedule for the ICU?'</em></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Input -->
+      <div class="flex items-center border-t px-4 py-3 bg-gray-50 rounded-b-xl">
+        <input id="user-input" type="text" placeholder="Ask about cleaning schedules, safety, etc." 
+          class="flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        <button onclick="sendMessage()" 
+          class="ml-3 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Send</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-16 max-w-6xl mx-auto px-6 text-center">
+    <h3 class="text-3xl font-bold mb-4">About MediClean AI</h3>
+    <p class="text-gray-600 max-w-3xl mx-auto">
+      MediClean AI is designed to help hospitals maintain hygiene standards by providing real-time 
+      cleaning data, safety alerts, and AI-powered recommendations.
+    </p>
+  </section>
+
+  <!-- Features -->
+  <section id="features" class="py-16 bg-gray-100">
+    <div class="max-w-6xl mx-auto px-6">
+      <h3 class="text-3xl font-bold text-center mb-12">Key Features</h3>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="p-6 bg-white rounded-xl shadow-md text-center">
+          <h4 class="text-xl font-semibold mb-2">Smart Chatbot</h4>
+          <p class="text-gray-600">Ask about cleaning schedules, safety checks, and compliance data.</p>
+        </div>
+        <div class="p-6 bg-white rounded-xl shadow-md text-center">
+          <h4 class="text-xl font-semibold mb-2">Hygiene Monitoring</h4>
+          <p class="text-gray-600">Track and verify cleaning operations in real-time.</p>
+        </div>
+        <div class="p-6 bg-white rounded-xl shadow-md text-center">
+          <h4 class="text-xl font-semibold mb-2">Data Insights</h4>
+          <p class="text-gray-600">Generate automated reports for hospital administration.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="py-16 max-w-6xl mx-auto px-6 text-center">
+    <h3 class="text-3xl font-bold mb-4">Get in Touch</h3>
+    <p class="text-gray-600 mb-6">Contact us to learn how MediClean AI can improve your hospital hygiene.</p>
+    <a href="mailto:info@medicalai.com" class="px-6 py-3 bg-blue-600 text-white rounded-lg">Contact Us</a>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white py-6 text-center">
+    <p>&copy; 2025 MediClean AI. All rights reserved.</p>
+  </footer>
+
+  <!-- Simple Chat Script -->
+  <script>
+    function sendMessage() {
+      const input = document.getElementById("user-input");
+      const chatWindow = document.getElementById("chat-window");
+      if (input.value.trim() !== "") {
+        // Add user message
+        const userMsg = document.createElement("div");
+        userMsg.className = "flex justify-end";
+        userMsg.innerHTML = `<div class="bg-blue-100 p-3 rounded-lg max-w-[75%]">${input.value}</div>`;
+        chatWindow.appendChild(userMsg);
+
+        // Auto scroll
+        chatWindow.scrollTop = chatWindow.scrollHeight;
+
+        // Add bot reply
+        setTimeout(() => {
+          const botMsg = document.createElement("div");
+          botMsg.className = "flex items-start gap-3 mt-2";
+          botMsg.innerHTML = `
+            <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center text-green-600">🤖</div>
+            <div class="bg-green-50 p-3 rounded-lg max-w-[75%]">
+              <p>Thank you for your query. Our system will check the cleaning records and respond shortly.</p>
+            </div>`;
+          chatWindow.appendChild(botMsg);
+          chatWindow.scrollTop = chatWindow.scrollHeight;
+        }, 1000);
+
+        input.value = "";
+      }
+    }
+  </script>
+
+</body>
+</html>
